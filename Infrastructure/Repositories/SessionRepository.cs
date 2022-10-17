@@ -60,7 +60,11 @@ public class SessionRepository : ISessionRepository
     {
         Session addedSession = _dbContext.Sessions.Add(session).Entity;
         _dbContext.SaveChanges();
-        return new Session() {Id = addedSession.Id, EndTime = session.EndTime, StartTime = session.StartTime, EmployeeId = session.EmployeeId};
+        return new Session() 
+            {Id = addedSession.Id, 
+            EndTime = addedSession.EndTime, 
+            StartTime = addedSession.StartTime, 
+            EmployeeId = addedSession.EmployeeId};
     }
 
     public Session EditSession(Session session, out Session oldSession)

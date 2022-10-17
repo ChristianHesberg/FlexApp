@@ -7,5 +7,6 @@ public class Schedule
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public double ShiftLength { get; set; }
+    public bool Logged { get; set; }
     public Employee? Employee { get; set; }
 }

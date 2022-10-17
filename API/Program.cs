@@ -50,6 +50,8 @@ var mapper = new MapperConfiguration(config =>
 {
     config.CreateMap<AddSessionDTO, Session>();
     config.CreateMap<EditSessionDTO, Session>();
+    config.CreateMap<AddScheduleDTO, Schedule>();
+    config.CreateMap<EditScheduleDTO, Schedule>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
