@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "taDJR1XMlUj6Hqi+EqWRGUmGFrz7R69U9rGGIwgfm4a+Falgx9upW5RMbgiL1t1s14w7Buxqzc5mmrGFevv+Ew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\deaso\\RiderProjects\\FlexApp\\ConsoleApp2\\ConsoleApp2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\deaso\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\deaso\\.nuget\\packages\\fluentvalidation\\11.2.2\\fluentvalidation.11.2.2.nupkg.sha512",
+    "C:\\Users\\deaso\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\deaso\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0-rc.2.22472.3\\microsoft.extensions.dependencyinjection.7.0.0-rc.2.22472.3.nupkg.sha512",
+    "C:\\Users\\deaso\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0-rc.2.22472.3\\microsoft.extensions.dependencyinjection.abstractions.7.0.0-rc.2.22472.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -14,11 +14,13 @@ public class SessionController : ControllerBase
 {
     private ISessionService _sessionService;
     private IFlexBalanceService _flexBalanceService;
+    private IScheduleService _scheduleService;
 
-    public SessionController(ISessionService sessionService, IFlexBalanceService flexService)
+    public SessionController(ISessionService sessionService, IFlexBalanceService flexService, IScheduleService scheduleService)
     {
         _sessionService = sessionService;
         _flexBalanceService = flexService;
+        _scheduleService = scheduleService;
     }
 
     [HttpGet]

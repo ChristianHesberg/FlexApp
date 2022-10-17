@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Util;
 using AutoMapper;
 using Domain.Models;
 using FluentValidation;
@@ -28,6 +29,11 @@ public class ScheduleService : IScheduleService
         return _repository.GetScheduleForEmployee(employeeId);
     }
 
+    public Schedule GetScheduleForEmployeeAtDate(int employeeId, DateTime date)
+    {
+        return _repository.GetScheduleForEmployeeAtDate(employeeId, date);
+    }
+
     public List<Schedule> GetScheduleForEmployeeInRange(int employeeId, DateTime start, DateTime end)
     {
         return _repository.GetScheduleForEmployeeInRange(employeeId, start, end);
@@ -40,22 +46,21 @@ public class ScheduleService : IScheduleService
             throw new ValidationException(validation.ToString());
         Schedule s = _mapper.Map<Schedule>(scheduleDTO);
         s.Logged = false;
-        s.ShiftLength
+        s.ShiftLength = CalculateShiftLength.CalculateLength(scheduleDTO.StartTime, scheduleDTO.EndTime);
         return _repository.AddSchedule(s);
     }
 
-    public Schedule EditSchedule(EditScheduleDTO schedule)
+    public Schedule EditSchedule(EditScheduleDTO scheduleDTO, out Schedule oldSchedule)
     {
-        throw new NotImplementedException();
+        var validation = _putValidator.Validate(scheduleDTO);
+        if (!validation.IsValid)
+            throw new ValidationException(validation.ToString());
+        Schedule s = _mapper.Map<Schedule>(scheduleDTO);
+        return _repository.EditSchedule(s, out oldSchedule);
     }
 
     public void DeleteSchedule(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    private double CalculateShiftLength(DateTime start, DateTime end)
-    {
-        double hours = start.Hour
+        _repository.DeleteSchedule(id);
     }
 }

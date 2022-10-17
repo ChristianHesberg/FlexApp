@@ -21,6 +21,16 @@ public class ScheduleRepository : IScheduleRepository
         throw new KeyNotFoundException();
     }
 
+    public Schedule GetScheduleForEmployeeAtDate(int employeeId, DateTime date)
+    {
+        Schedule schedule = _dbContext.Schedules
+            .Where(s => s.EmployeeId == employeeId)
+            .FirstOrDefault(s => s.StartTime.Date == date.Date);
+        if (schedule != null)
+            return schedule;
+        throw new KeyNotFoundException();
+    }
+
     public List<Schedule> GetScheduleForEmployeeInRange(int employeeId, DateTime start, DateTime end)
     {
         List<Schedule> schedules = _dbContext.Schedules
@@ -50,11 +60,20 @@ public class ScheduleRepository : IScheduleRepository
         */
     }
 
-    public Schedule EditSchedule(Schedule schedule)
+    public Schedule EditSchedule(Schedule schedule, out Schedule oldSchedule)
     {
         Schedule edit = _dbContext.Schedules.Find(schedule.Id);
         if (edit != null)
         {
+            oldSchedule = new Schedule()
+            {
+                Id = edit.Id,
+                EmployeeId = edit.EmployeeId,
+                StartTime = edit.StartTime,
+                EndTime = edit.EndTime,
+                ShiftLength = edit.ShiftLength,
+                Logged = edit.Logged
+            }; 
             edit.StartTime = schedule.StartTime;
             edit.EndTime = schedule.EndTime;
             edit.ShiftLength = schedule.ShiftLength;

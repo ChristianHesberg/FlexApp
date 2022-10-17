@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Util;
 using Domain.Models;
 
 namespace Application.Services;
@@ -20,18 +21,14 @@ public class FlexBalanceService : IFlexBalanceService
 
     public void AddFlexBalance(Session session)
     {
-        double amountHours = session.EndTime.Hour - session.StartTime.Hour;
-        double amountMinutes = session.EndTime.Minute - session.StartTime.Minute;
-        double amount = amountHours + (amountMinutes / 60);
-
+        double amount = CalculateShiftLength.CalculateLength(session.StartTime, session.EndTime);
+        
         _repo.AddFlexBalance(session.EmployeeId, amount);
     }
 
     public void RemoveFlexBalance(Session session)
     {
-        double amountHours = session.EndTime.Hour - session.StartTime.Hour;
-        double amountMinutes = session.EndTime.Minute - session.StartTime.Minute;
-        double amount = amountHours + (amountMinutes / 60);
+        double amount = CalculateShiftLength.CalculateLength(session.StartTime, session.EndTime);
         double newAmount = amount * -1;
 
         _repo.AddFlexBalance(session.EmployeeId, newAmount);

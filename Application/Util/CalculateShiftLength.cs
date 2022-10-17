@@ -7,7 +7,7 @@ public static class CalculateShiftLength
         double hours = 0;
         hours += (end.Day - start.Day) * 24;
         hours += end.Hour - start.Hour;
-        hours += (end.Minute - start.Minute) / 60;
+        hours += (end.Minute - start.Minute) / 60.0;
         return hours;
     }
 }
