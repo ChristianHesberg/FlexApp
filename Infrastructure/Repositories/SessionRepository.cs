@@ -22,7 +22,7 @@ public class SessionRepository : ISessionRepository
 
     public List<Session> GetAllSessionsFromUser(int userId)
     {
-        List<Session> sessions = _dbContext.Sessions.Where(s => s.UserId == userId).Select(s => s).ToList();
+        List<Session> sessions = _dbContext.Sessions.Where(s => s.EmployeeId == userId).Select(s => s).ToList();
         if (!sessions.IsNullOrEmpty())
             return sessions;
         throw new KeyNotFoundException();
@@ -39,7 +39,7 @@ public class SessionRepository : ISessionRepository
     public List<Session> GetSessionsOfUserFromDate(int userId, DateTime date)
     {
         List<Session> sessions = _dbContext.Sessions
-            .Where(s => s.UserId == userId)
+            .Where(s => s.EmployeeId == userId)
             .Where(s => s.StartTime.Date == date.Date)
             .Select(s => s)
             .ToList();
@@ -60,7 +60,7 @@ public class SessionRepository : ISessionRepository
     {
         Session addedSession = _dbContext.Sessions.Add(session).Entity;
         _dbContext.SaveChanges();
-        return new Session() {Id = addedSession.Id, EndTime = session.EndTime, StartTime = session.StartTime, UserId = session.UserId};
+        return new Session() {Id = addedSession.Id, EndTime = session.EndTime, StartTime = session.StartTime, EmployeeId = session.EmployeeId};
     }
 
     public Session EditSession(Session session, out Session oldSession)
@@ -69,7 +69,7 @@ public class SessionRepository : ISessionRepository
         if (edit != null)
         {
             oldSession = new Session()
-                { Id = edit.Id, StartTime = edit.StartTime, EndTime = edit.EndTime, UserId = edit.UserId };
+                { Id = edit.Id, StartTime = edit.StartTime, EndTime = edit.EndTime, EmployeeId = edit.EmployeeId };
             edit.StartTime = session.StartTime;
             edit.EndTime = session.EndTime;
             _dbContext.SaveChanges();

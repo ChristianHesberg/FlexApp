@@ -24,7 +24,7 @@ public class FlexBalanceService : IFlexBalanceService
         double amountMinutes = session.EndTime.Minute - session.StartTime.Minute;
         double amount = amountHours + (amountMinutes / 60);
 
-        _repo.AddFlexBalance(session.UserId, amount);
+        _repo.AddFlexBalance(session.EmployeeId, amount);
     }
 
     public void RemoveFlexBalance(Session session)
@@ -34,7 +34,7 @@ public class FlexBalanceService : IFlexBalanceService
         double amount = amountHours + (amountMinutes / 60);
         double newAmount = amount * -1;
 
-        _repo.AddFlexBalance(session.UserId, newAmount);
+        _repo.AddFlexBalance(session.EmployeeId, newAmount);
     }
 
     public void EditFlexBalance(Session editedSession, Session oldSession)

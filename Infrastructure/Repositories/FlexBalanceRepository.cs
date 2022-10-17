@@ -16,12 +16,12 @@ public class FlexBalanceRepository : IFlexBalanceRepository
 
     public double GetFlexBalance(int userId)
     {
-        return _dbContext.AppUsers.Select(u => u.FlexBalance).First();
+        return _dbContext.Employees.Select(u => u.FlexBalance).First();
     }
 
     public void AddFlexBalance(int userId, double amount)
     {
-        AppUser user = _dbContext.AppUsers.Find(userId);
+        Employee user = _dbContext.Employees.Find(userId);
         if (user != null)
         {
             double balance = user.FlexBalance;
