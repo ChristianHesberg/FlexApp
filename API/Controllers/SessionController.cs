@@ -91,7 +91,10 @@ public class SessionController : ControllerBase
         try
         {
             Session session = _sessionService.AddSession(dto);
-            _flexBalanceService.AddFlexBalance(session);
+            Schedule schedule =
+                _scheduleService.GetScheduleForEmployeeAtDate(session.EmployeeId, session.StartTime.Date);
+            _flexBalanceService.AddInitialFlexBalance(session, schedule);
+            _scheduleService.LogSchedule(schedule.Id);
             return Created("session/" + session.Id, session);
         }
         catch (ValidationException e)

@@ -39,6 +39,11 @@ public class ScheduleService : IScheduleService
         return _repository.GetScheduleForEmployeeInRange(employeeId, start, end);
     }
 
+    public void LogSchedule(int id)
+    {
+        _repository.LogSchedule(id);
+    }
+
     public Schedule AddSchedule(AddScheduleDTO scheduleDTO)
     {
         var validation = _postValidator.Validate(scheduleDTO);

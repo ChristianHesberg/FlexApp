@@ -10,5 +10,6 @@ public class DependencyResolverService
     {
         services.AddScoped<ISessionRepository, SessionRepository>();
         services.AddScoped<IFlexBalanceRepository, FlexBalanceRepository>();
+        services.AddScoped<IScheduleRepository, ScheduleRepository>();
     }
 }

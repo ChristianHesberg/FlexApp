@@ -25,7 +25,9 @@ public class ScheduleRepository : IScheduleRepository
     {
         Schedule schedule = _dbContext.Schedules
             .Where(s => s.EmployeeId == employeeId)
-            .FirstOrDefault(s => s.StartTime.Date == date.Date);
+            .Where(s => s.StartTime.Date == date.Date)
+            .Select(s => s)
+            .FirstOrDefault();
         if (schedule != null)
             return schedule;
         throw new KeyNotFoundException();
@@ -42,6 +44,17 @@ public class ScheduleRepository : IScheduleRepository
         if (schedules != null)
             return schedules;
         throw new ArgumentException();
+    }
+
+    public void LogSchedule(int id)
+    {
+        Schedule schedule = _dbContext.Schedules.Find(id);
+        if (schedule != null)
+            schedule.Logged = true;
+        else
+        {
+            throw new KeyNotFoundException();
+        }
     }
 
     public Schedule AddSchedule(Schedule schedule)

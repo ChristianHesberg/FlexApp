@@ -19,10 +19,18 @@ public class FlexBalanceService : IFlexBalanceService
         return _repo.GetFlexBalance(userId);
     }
 
+    public void AddInitialFlexBalance(Session session, Schedule schedule)
+    {
+        double amount = CalculateShiftLength.CalculateLength(session.StartTime, session.EndTime);
+        if (!schedule.Logged)
+            amount -= schedule.ShiftLength;
+        _repo.AddFlexBalance(session.EmployeeId, amount);
+    }
+    
     public void AddFlexBalance(Session session)
     {
         double amount = CalculateShiftLength.CalculateLength(session.StartTime, session.EndTime);
-        
+
         _repo.AddFlexBalance(session.EmployeeId, amount);
     }
 

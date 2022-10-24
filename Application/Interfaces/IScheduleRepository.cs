@@ -10,4 +10,5 @@ public interface IScheduleRepository
     public Schedule AddSchedule(Schedule schedule);
     public Schedule EditSchedule(Schedule schedule, out Schedule oldSchedule);
     public void DeleteSchedule(int id);
+    void LogSchedule(int id);
 }
