@@ -72,7 +72,7 @@ public class SessionService : ISessionService
     {
         return _repo.DeleteSession(id);
     }
-
+    
     public void ResetDb()
     {
         _repo.ResetDb();

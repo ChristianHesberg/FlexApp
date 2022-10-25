@@ -28,7 +28,13 @@ public class ClockShiftService : IClockShiftService
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
         Session session = _mapper.Map<Session>(dto);
-        return _repo.AddSession(session);
+        session.EndTime = DateTime.MinValue;
+
+        Session checkClockIn = _repo.GetSessionNoClockout(dto.EmployeeId);
+        if(checkClockIn.Id == -1)
+            return _repo.AddSession(session);
+
+        throw new ArgumentException("Already Clocked In");
     }
 
     public Session ClockOut(ClockOutDTO dto)
@@ -37,6 +43,11 @@ public class ClockShiftService : IClockShiftService
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
         Session session = _mapper.Map<Session>(dto);
-        return _repo.AddSession(session);
+
+        Session clockedIn = _repo.GetSessionNoClockout(session.EmployeeId);
+        clockedIn.EndTime = session.EndTime;
+        if (clockedIn.Id != null)
+            return _repo.EditSessionClockOut(clockedIn);
+        throw new ArgumentException("Not Clocked In");
     }
 }

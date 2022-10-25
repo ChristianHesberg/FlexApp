@@ -67,6 +67,18 @@ public class SessionRepository : ISessionRepository
             EmployeeId = addedSession.EmployeeId};
     }
 
+    public Session EditSessionClockOut(Session session)
+    {
+        Session edit = _dbContext.Sessions.Find(session.Id);
+        if (edit != null)
+        {
+            edit.EndTime = session.EndTime;
+            _dbContext.SaveChanges();
+            return session;
+        }
+        throw new KeyNotFoundException();
+    }
+
     public Session EditSession(Session session, out Session oldSession)
     {
         Session edit = _dbContext.Sessions.Find(session.Id);
@@ -93,6 +105,25 @@ public class SessionRepository : ISessionRepository
         }
         throw new KeyNotFoundException();
     }
+
+    public Session GetSessionNoClockout(int id)
+    {
+        Session session = _dbContext.Sessions
+            .Where(s => s.EndTime == DateTime.MinValue)
+            .Where(s => s.EmployeeId == id)
+            .Select(s => s)
+            .FirstOrDefault();
+        if (session != null)
+            return new Session()
+            {
+                Id = session.Id,
+                StartTime = session.StartTime,
+                EndTime = session.EndTime,
+                EmployeeId = session.EmployeeId
+            };
+        return new Session() { Id = -1 };
+    }
+    
     
     public void ResetDb()
     {

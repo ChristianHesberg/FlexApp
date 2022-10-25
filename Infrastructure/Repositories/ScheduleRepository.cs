@@ -50,7 +50,10 @@ public class ScheduleRepository : IScheduleRepository
     {
         Schedule schedule = _dbContext.Schedules.Find(id);
         if (schedule != null)
+        {
             schedule.Logged = true;
+            _dbContext.SaveChanges();
+        }
         else
         {
             throw new KeyNotFoundException();
@@ -62,15 +65,6 @@ public class ScheduleRepository : IScheduleRepository
         _dbContext.Schedules.Add(schedule);
         _dbContext.SaveChanges();
         return schedule;
-        /*return new Schedule()
-        {
-            Id = added.Id,
-            StartTime = added.StartTime,
-            EndTime = added.EndTime,
-            ShiftLength = added.ShiftLength,
-            EmployeeId = added.EmployeeId
-        };
-        */
     }
 
     public Schedule EditSchedule(Schedule schedule, out Schedule oldSchedule)
