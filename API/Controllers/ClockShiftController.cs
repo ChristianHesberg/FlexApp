@@ -63,6 +63,4 @@ public class ClockShiftController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
-    
-
 }
