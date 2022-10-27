@@ -12,7 +12,12 @@ export class HttpService {
 
   constructor() { }
 
-  async getProducts(){
-    const data = await customAxios.get<any>('session')
+  async getSessions(){
+    const response = await customAxios.get<any>('session')
+    return response.data;
+  }
+
+  async insertSession(dto: { startTime: Date; employeeId: number; endTime: Date }) {
+    return await customAxios.post('session', dto);
   }
 }
