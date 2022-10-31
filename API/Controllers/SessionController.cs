@@ -118,6 +118,10 @@ public class SessionController : ControllerBase
             _flexBalanceService.EditFlexBalance(session, oldSession);
             return Ok(session);
         }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.Message);
+        }
         catch (KeyNotFoundException e)
         {
             return BadRequest(e.Message);
@@ -126,11 +130,18 @@ public class SessionController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public ActionResult DeleteSession(int id)
+    public ActionResult<Session> DeleteSession(int id)
     {
-        Session session = _sessionService.DeleteSession(id);
-        _flexBalanceService.RemoveFlexBalance(session);
-        return Ok(session);
+        try
+        {
+            Session session = _sessionService.DeleteSession(id);
+            _flexBalanceService.RemoveFlexBalance(session);
+            return Ok(session);
+        }
+        catch (KeyNotFoundException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpGet]

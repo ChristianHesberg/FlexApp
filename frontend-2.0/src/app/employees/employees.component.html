@@ -1,1 +1,9 @@
-<p>employees works!</p>
+<div style="margin: 100px">
+  <mat-card style="margin-top: 30px" *ngFor="let e of employees">
+    <mat-card-title>{{e.name}}</mat-card-title>
+    <mat-card-subtitle>Flex Balance: {{e.flexBalance | number:'1.1-2'}}</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-button (click)="sessionDetails(e.id)">Get Sessions</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

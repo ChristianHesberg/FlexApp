@@ -33,7 +33,7 @@ export class HttpService {
   }
 
   async getSessions(): Promise<Session[]>{
-    const response = await customAxios.get<Session[]>('session')
+    const response = await customAxios.get<Session[]>('session');
     return response.data;
   }
 

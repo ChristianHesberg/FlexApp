@@ -12,5 +12,6 @@ public class DependencyResolverService
         services.AddScoped<IFlexBalanceService, FlexBalanceService>();
         services.AddScoped<IScheduleService, ScheduleService>();
         services.AddScoped<IClockShiftService, ClockShiftService>();
+        services.AddScoped<IEmployeeService, EmployeeService>();
     }
 }
