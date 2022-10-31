@@ -9,6 +9,9 @@ import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatCardModule} from "@angular/material/card";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Overlay} from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -22,9 +25,12 @@ import {MatNativeDateModule} from "@angular/material/core";
     FormsModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
   ],
   providers: [
+    MatSnackBar,
+    Overlay,
     MatDatepickerModule,
     MatNativeDateModule
   ],

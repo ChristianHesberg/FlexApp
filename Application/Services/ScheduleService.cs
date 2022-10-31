@@ -41,7 +41,8 @@ public class ScheduleService : IScheduleService
 
     public void LogSchedule(int id)
     {
-        _repository.LogSchedule(id);
+        if(id!=-1)
+            _repository.LogSchedule(id);
     }
 
     public Schedule AddSchedule(AddScheduleDTO scheduleDTO)

@@ -130,7 +130,7 @@ public class SessionController : ControllerBase
     {
         Session session = _sessionService.DeleteSession(id);
         _flexBalanceService.RemoveFlexBalance(session);
-        return NoContent();
+        return Ok(session);
     }
 
     [HttpGet]

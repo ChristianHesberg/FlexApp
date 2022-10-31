@@ -22,9 +22,14 @@ public class FlexBalanceService : IFlexBalanceService
     public void AddInitialFlexBalance(Session session, Schedule schedule)
     {
         double amount = CalculateShiftLength.CalculateLength(session.StartTime, session.EndTime);
-        if (!schedule.Logged)
+        if(schedule.EmployeeId==-1)
+            _repo.AddFlexBalance(session.EmployeeId, amount);
+        else if(!schedule.Logged)
+        {   
             amount -= schedule.ShiftLength;
-        _repo.AddFlexBalance(session.EmployeeId, amount);
+            _repo.AddFlexBalance(session.EmployeeId, amount);
+            
+        }
     }
     
     public void AddFlexBalance(Session session)

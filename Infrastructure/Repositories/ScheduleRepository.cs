@@ -30,7 +30,7 @@ public class ScheduleRepository : IScheduleRepository
             .FirstOrDefault();
         if (schedule != null)
             return schedule;
-        throw new KeyNotFoundException();
+        return new Schedule() { EmployeeId = -1, Id = -1};
     }
 
     public List<Schedule> GetScheduleForEmployeeInRange(int employeeId, DateTime start, DateTime end)
