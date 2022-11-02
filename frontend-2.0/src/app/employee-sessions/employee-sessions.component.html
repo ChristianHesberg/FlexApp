@@ -1,0 +1,9 @@
+<div>
+  <mat-card style="margin-top: 30px" *ngFor="let s of sessions">
+    <mat-card-subtitle>Start Time: {{s.startTime | date: 'short'}}</mat-card-subtitle>
+    <mat-card-subtitle>End Time: {{s.endTime | date: 'short'}}</mat-card-subtitle>
+    <mat-card-actions>
+      <button (click)="deleteSession(s.id)">Delete Session</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

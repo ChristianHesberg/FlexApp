@@ -7,20 +7,41 @@ import { HeaderComponent } from './header/header.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
+import { EmployeeCreateComponent } from './employee-create/employee-create.component';
+import {FormsModule} from "@angular/forms";
+import { EmployeeSessionsComponent } from './employee-sessions/employee-sessions.component';
+import { SessionCreateComponent } from './session-create/session-create.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeCreateComponent,
+    EmployeeSessionsComponent,
+    SessionCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

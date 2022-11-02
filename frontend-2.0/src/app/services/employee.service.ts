@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from "axios";
-import {Employee} from "../employees/employee";
-import {EmployeeDTO} from "../employees/employeeDTO";
+import {Employee} from "../Entities/employee";
+import {EmployeeDTO} from "../Entities/employeeDTO";
 
 export const customAxios = axios.create({
   baseURL: 'https://localhost:5001'

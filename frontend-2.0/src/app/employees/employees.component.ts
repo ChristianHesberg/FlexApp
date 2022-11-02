@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EmployeeService} from "../services/employee.service";
-import {Employee} from "./employee";
+import {Employee} from "../Entities/employee";
 
 @Component({
   selector: 'employees',
@@ -19,6 +19,6 @@ export class EmployeesComponent implements OnInit {
 
 
   sessionDetails(id: number) {
-    
+
   }
 }
