@@ -19,5 +19,11 @@
   </mat-form-field>
   <br>
 
-  <button [disabled]="startTime==''|| endTime==''|| date==undefined" mat-raised-button (click)="createSession()">Add Session</button>
+  <div ng *ngIf="sessionId==0">
+    <button [disabled]="startTime==''|| endTime==''|| date==undefined" mat-raised-button (click)="createSession()">Add Session</button>
+  </div>
+  <div ng *ngIf="sessionId!==0">
+    <button [disabled]="startTime==''|| endTime==''|| date==undefined" mat-raised-button (click)="editSession(sessionId)">Edit Session</button>
+  </div>
+
 </div>

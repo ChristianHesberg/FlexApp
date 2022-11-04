@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'addEmployee', component: EmployeeCreateComponent},
   {path: 'employeeSession/:id', component: EmployeeSessionsComponent},
   {path: 'addSession/:id', component: SessionCreateComponent},
+  {path: 'editSession/:id/:ses', component: SessionCreateComponent},
 ];
 
 @NgModule({

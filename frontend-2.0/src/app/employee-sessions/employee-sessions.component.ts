@@ -20,8 +20,10 @@ export class EmployeeSessionsComponent implements OnInit {
     this.sessions = await this.sessionService.getSessionsForEmployee(id)
   }
 
-  editSession(session: Session) {
-
+  async editSession(session: Session) {
+    const result = await this.sessionService.editSession(session);
+    this.sessions = this.sessions.filter(s => s.id != result.id);
+    this.sessions.push(result);
   }
 
   async deleteSession(id: number) {

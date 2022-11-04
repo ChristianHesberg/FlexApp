@@ -16,6 +16,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
+import {Overlay} from "@angular/cdk/overlay";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -36,9 +38,12 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+
   ],
   providers: [
+    MatSnackBar,
+    Overlay,
     MatDatepickerModule,
     MatNativeDateModule
   ],

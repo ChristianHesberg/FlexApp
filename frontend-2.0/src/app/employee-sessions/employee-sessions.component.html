@@ -4,6 +4,7 @@
     <mat-card-subtitle>End Time: {{s.endTime | date: 'short'}}</mat-card-subtitle>
     <mat-card-actions>
       <button (click)="deleteSession(s.id)">Delete Session</button>
+      <button routerLink="/editSession/{{s.employeeId}}/{{s.id}}">Edit Session</button>
     </mat-card-actions>
   </mat-card>
 </div>
